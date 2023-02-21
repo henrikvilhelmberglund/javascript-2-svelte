@@ -144,7 +144,7 @@ Länk till första uppgiften: https://www.freecodecamp.org/learn/javascript-algo
 	let inputValue = "";
 	let capitalizeMe = "";
 
-  console.log(typeof [])
+	console.log(typeof []);
 </script>
 
 <main class="m-4">
@@ -173,15 +173,15 @@ Länk till första uppgiften: https://www.freecodecamp.org/learn/javascript-algo
 	<p>{sumAll([10, 5])}</p>
 </main>
 
-<div>
-	<input bind:value={inputValue} type="text" />
+<div class="m-4">
+	<input class="p-1 border-1 rounded" bind:value={inputValue} type="text" />
 	<p>
 		{reverseString(inputValue)}
 	</p>
 </div>
 
-<div>
-	<input bind:value={capitalizeMe} type="text" />
+<div class="m-4">
+	<input class="p-1 border-1 rounded" bind:value={capitalizeMe} type="text" />
 	<p>
 		{capitalizeStarts(capitalizeMe)}
 	</p>
