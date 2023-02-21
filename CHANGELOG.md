@@ -1,0 +1,36 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## 0.0.1 (2023-02-21)
+
+
+### Features
+
+* :lipstick: add some styles for the input fields so they are actually visible ([b8d87ca](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/b8d87cab542ff9c6559eff3e78248edaad2e40cd))
+* :sparkles: add Nav to 01lektion1 layout route ([dd9933f](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/dd9933f111d835c85104629e5e515bb0b2127c50))
+* :sparkles: show Nav only on +page.svelte in the index route ([8596dbf](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/8596dbffe333b8d0f3b4124e9fd9b91ab53bda96))
+* :sparkles: add Nav component (stolen from other project) (and fixed a bit) ([ac0b766](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/ac0b7666a21a1d4a27623a406732291ae3e30480))
+* :sparkles: add 02 route ([280725d](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/280725d57f776100bb3dd731fba0e3f19746adcd))
+* :sparkles: add /02 route to header ([f3c43a8](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/f3c43a88c6654f8646dc03d8636bc26d030bc49d))
+* :sparkles: add exercise route ([d8d706c](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/d8d706c0e77bb2661551db8ea10a9d6d9b41f5b1))
+* :sparkles: add 01 route ([f02695f](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/f02695ff4993e777c589662a599f13ec6a7be27c))
+* :sparkles: add 01lektion1 route ([a269938](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/a269938ca3fca6e76b4e149c1155046d258d321a))
+* :sparkles: add empty index route (layout is already there) ([c84c8a8](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c84c8a8af850e7779e8ce9df0d6326ce313f48af))
+* :sparkles: add layout routes as links ([d9f629c](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/d9f629c8c71449876c1fe50f84c0077875359e97))
+* :memo: add notes (empty...) ([4fcb48e](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/4fcb48ed16213f8973d0222c9a727c8cc7599533))
+* :wrench: add presetForms() ([eb03b42](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/eb03b428092755105844cb2512d54d0692dced79))
+* :package: add unocss forms ([c3945e0](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c3945e06941c3ffbd09a00a149fe039c245e4d4a))
+* :sparkles: initial setup ([8c385bc](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/8c385bcd7050c07b32f284da74fa2004e679f6cc))
+
+
+### Bug Fixes
+
+* :bug: reenable SSR for static site building ([4582dd0](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/4582dd0e530f70751589ea930e9421a4eb169e0f))
+* :fire: remove window console log incompatible with SSR ([199792b](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/199792bda710b6807796d72752d91de484eb4f29))
+* :fire: remove unused route ([aee773d](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/aee773ddec7b59e09926856c3f0265d6a52c93ce))
+* :bug: replace body with main to avoid removing the nav ([6511190](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/65111902782171956df72b0575f3761720081952))
+* :fire: remove old header ([11685ca](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/11685ca2cce3237ed7243a627e9468280f738ce5))
+* :bug: don't clear body innerHTML ([046fb14](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/046fb14ed0b25dcea297b8b797962f5f29c7f06c))
+* :fire: remove notes folder (code = notes) ([9da2731](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/9da27319705235dd913fabf249b1b1f204d11b4a))
+* :bug: disable SSR (for now) ([c0dd5c4](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c0dd5c4868b1eb5901aaa207efd8ee87a5668238))
