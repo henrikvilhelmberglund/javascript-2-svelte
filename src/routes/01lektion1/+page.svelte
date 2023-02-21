@@ -2,7 +2,7 @@
 	import { page } from "$app/stores";
 
 	let base = "01lektion1";
-	let routes = ["/01", "/exercise"];
+	let routes = ["/01", "/exercise", "/02"];
 
   // TODO fix base getting added twice
 </script>
