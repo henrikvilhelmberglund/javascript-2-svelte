@@ -17,9 +17,9 @@
 	];
 
 	onMount(() => {
-		let body = document.querySelector("body");
+		let main = document.querySelector("main");
 		let div = document.createElement("div");
-		// body.innerHTML = "";
+		// main.innerHTML = "";
 
 		let sortedHeroes = [...data];
 
@@ -59,7 +59,7 @@
 
 		div.innerHTML += `${JSON.stringify(newArray)}`;
 		div.innerHTML += `<br><br>`;
-		body.append(div);
+		main.append(div);
 
 		// import("./main.js");
 	});
