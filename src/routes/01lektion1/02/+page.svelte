@@ -50,9 +50,7 @@
 			console.log("Sup, I'm Oliver!");
 		},
 	};
-
-  console.log(window);
-
+  
 	// person.greet();
 	// console.log(person.greet());
 
