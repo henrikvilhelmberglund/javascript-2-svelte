@@ -66,17 +66,22 @@
 	console.log(calc.multiply(5, 7));
 	console.log(calc.divide(5, 7));
 
-	let value1;
-	let value2;
+	let value1 = 0;
+	let value2 = 0;
 	let result = 0;
+
+	$: added = calc.add(value1, value2);
+	$: subtracted = calc.subtract(value1, value2);
+	$: multiplied = calc.multiply(value1, value2);
+	$: divided = calc.divide(value1, value2);
 
 	// 4
 
 	class Icecream {
 		constructor(flavor, numSprinkles) {
-			let flavors = { Plain: 0, Vanilla: 5, ChocolateChip: 5, Strawberry: 10, Chocolate: 10 };
+			let sweetnessOf = { Plain: 0, Vanilla: 5, ChocolateChip: 5, Strawberry: 10, Chocolate: 10 };
 			this.flavor = flavor;
-			this.sweetness = flavors[flavor] + numSprinkles * 1;
+			this.sweetness = sweetnessOf[flavor] + numSprinkles * 1;
 		}
 	}
 
@@ -162,6 +167,21 @@
 	<button on:click={() => (result = 0)} class="rounded-xl bg-green-300 p-2 px-3">C</button>
 	<hr class="my-4" />
 	<p class="text-2xl">{result}</p>
+
+	<div class="flex">
+		<p>
+			added: {added}
+		</p>
+		<p>
+			subtracted: {subtracted}
+		</p>
+		<p>
+			multiplied: {multiplied}
+		</p>
+		<p>
+			divided: {divided}
+		</p>
+	</div>
 </article>
 
 <!-- 4 -->
