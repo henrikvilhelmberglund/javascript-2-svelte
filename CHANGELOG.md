@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.2](https://github.com/henrikvilhelmberglund/javascript-2-svelte/compare/v0.0.1...v0.0.2) (2023-02-24)
+
+
+### Features
+
+* :sparkles: update 02 ([5c45e95](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/5c45e9516b657430d8d08f1dbe42506e593fddcc))
+* :sparkles: update 02 ([c210cf3](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c210cf30a8c0baa2140a6ad13ed987d164fd6c60))
+* :sparkles: add 02 route ([fafc83a](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/fafc83a3863bcbabf961a3e57546a1f67d433ee9))
+* :art: make more obvious ([f4a3752](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/f4a37521ee95bd21af9634d6a356e5d829c52c56))
+* :sparkles: add exercise route ([a1dba68](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/a1dba686208da2f0e435cce9ad10cac0f2f4c5a7))
+* :sparkles: add 01 route ([7cb257b](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/7cb257bc1ea45ea5f06166fe0c89807d7a8b6992))
+* :sparkles: add empty index page for new route ([fd71630](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/fd7163032e6cc818e94ed92550d7119fbfa9c7f0))
+* :sparkles: add 02lektion2 nav ([596c0ba](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/596c0baa7daf2cae049979c0440fc8495b46862f))
+* :sparkles: add 02lektion2 route ([7a4c167](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/7a4c167bc40f04f756eab0ae47174283b7743d79))
+* :ambulance: add missing .nojekyll file ([8d5bed7](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/8d5bed729939064ffdbc5e3d96ed64c00b27556b))
+
+
+### Bug Fixes
+
+* :recycle: move Nav to layout instead of page ([b1634d1](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/b1634d1e577d5b9f04098b206a1c85fb8e88d8c8))
+* :bug: fix Nav bugs (works in layout everywhere now) ([33d5161](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/33d5161a3134c5b41d9973d46b192d5722e4ee26))
+
 ## 0.0.1 (2023-02-21)
 
 
