@@ -7,15 +7,15 @@
 			this.hunger = 50;
 			this.loneliness = 50;
 			this.happiness = 50;
+			this.state = "idle";
 		}
 
 		createInterval() {
-			setInterval(() => {
-				console.log("moo");
-				this.tiredness += 10;
-				this.hunger += 10;
-				this.loneliness += 10;
-			}, 1000);
+			// console.log("moo");
+			this.tiredness += 10;
+			this.hunger += 10;
+			this.loneliness += 10;
+			this.checkValues();
 		}
 
 		nap() {
@@ -24,6 +24,8 @@
 			this.hunger += 10;
 			this.loneliness += 10;
 			this.checkValues();
+			this.state = "nap";
+      currentState = `You took a nap with ${this.name}! ${this.name} slept well and is less tired now.`;
 		}
 
 		play() {
@@ -31,17 +33,21 @@
 				this.happiness += 30;
 				this.hunger += 20;
 				this.tiredness += 20;
-				this.loneliness -= 10;
+				this.loneliness -= 40;
 			} else {
 				console.log("too tired");
 			}
 			this.checkValues();
+			this.state = "play";
+      currentState = `You pet ${this.name}! ${this.name} wiggles its tail with happiness.`;
 		}
 
 		eat() {
 			this.hunger -= 60;
 			this.tiredness += 10;
 			this.checkValues();
+			this.state = "play";
+      currentState = `You gave ${this.name} some delicious food! ${this.name} munched it down instantly.`;
 		}
 
 		checkValues() {
@@ -74,20 +80,10 @@
 	}
 
 	let name = "Darkwing Duck";
-	let type;
+	let type = "Duck";
 	let types = ["Duck", "Frog", "Fish"];
 	let pets = [];
 	let pet = {};
-	let petHunger;
-
-	$: {
-		if (pets[0]) {
-			petHunger = pets[0].hunger;
-			console.log(petHunger);
-		}
-	}
-
-	console.log(petHunger);
 
 	function addAnimal() {
 		pet = new Pet(name, type);
@@ -97,6 +93,19 @@
 	}
 
 	let currentState;
+	let animal;
+
+	function createAnimalInstance() {
+		animal = addAnimal();
+
+		setInterval(() => {
+			animal.createInterval();
+			animal = animal;
+		}, 10000);
+		return animal;
+	}
+
+	createAnimalInstance();
 </script>
 
 <!-- 
@@ -124,55 +133,78 @@
 	</select>
 	<button
 		on:click={() => {
-			let animal = addAnimal();
-			animal.createInterval();
+			animal = addAnimal();
+
+			setInterval(() => {
+				animal.createInterval();
+				animal = animal;
+			}, 10000);
 		}}
 		class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 </main>
 
-<div class="flex w-96 flex-col p-2">
-	{#each pets as pet}
-		{#each Object.entries(pet) ?? [] as [key, value]}
+<article class="flex flex-row">
+	<div class="flex w-96 flex-col p-2">
+		{#each pets as pet}
+			{#key animal}
+				{#each Object.entries(pet) ?? [] as [key, value]}
+					<div class="flex flex-row justify-around gap-4">
+						{#if typeof value !== "number"}
+							<p>
+								{key}:{value}
+							</p>
+						{:else}
+							<p>
+								{key}:
+							</p>
+							<label for={key}>{value}</label>
+							{#if key === "happiness"}
+								<progress
+									class:good={key === "happiness"}
+									class="w-32"
+									id={key}
+									{value}
+									max="100" />
+							{:else}
+								<progress class:bad={key !== "happiness"} class="w-32" id={key} {value} max="100" />
+							{/if}
+						{/if}
+					</div>
+				{/each}
+			{/key}
 			<div class="flex flex-row justify-around gap-4">
-				{#if typeof value !== "number"}
-					<p>
-						{key}:{value}
-					</p>
-				{:else}
-					<p>
-						{key}:
-					</p>
-					<label for={key}>{value}</label>
-
-					<progress class="w-32" id={key} {value} max="100" />
-				{/if}
+				<button
+					class="button-class"
+					on:click={() => {
+						pet.nap();
+						pet = pet;
+					}}>Nap</button>
+				<button
+					class="button-class"
+					on:click={() => {
+						pet.play();
+						pet = pet;
+					}}>Play</button>
+				<button
+					class="button-class"
+					on:click={() => {
+						pet.eat();
+						pet = pet;
+					}}>Eat</button>
 			</div>
+      {#key pet.state}
+        
+      <img
+      src="/images/{pet.animalType.toLowerCase()}_{pet.state}.gif"
+      width="256"
+      height="256"
+      alt="" />
+      {/key}
 		{/each}
-		<div class="flex flex-row justify-around gap-4">
-			<button
-				class="button-class"
-				on:click={() => {
-					pet.nap();
-					pet = pet;
-					currentState = `You took a nap with ${pet.name}! ${pet.name} slept well and is less tired now.`;
-				}}>Nap</button>
-			<button
-				class="button-class"
-				on:click={() => {
-					pet.play();
-					pet = pet;
-					currentState = `You pet ${pet.name}! ${pet.name} wiggles its tail with happiness.`;
-				}}>Play</button>
-			<button
-				class="button-class"
-				on:click={() => {
-					pet.eat();
-					pet = pet;
-					currentState = `You gave ${pet.name} some delicious food! ${pet.name} munched it down instantly.`;
-				}}>Eat</button>
-		</div>
-	{/each}
-</div>
+	</div>
+	<div>
+	</div>
+</article>
 {#if currentState}
 	<div class="flex flex-row items-center justify-center">
 		<p class="py-12 text-xl">{currentState}</p>
@@ -189,7 +221,19 @@
     7. Hitta på egen funktionalitet! Din fantasi sätter gränsen :) Sätt t.ex en timer så att för varje 10 sekund, höjs samtliga värden förutom happiness med 10.
 -->
 <style>
-	progress[value]::-webkit-progress-value {
+	::-webkit-progress-bar {
+		/* ... */
+	}
+
+	::-webkit-progress-value {
+		/* ... */
+	}
+
+	.bad::-webkit-progress-value {
+		@apply bg-gradient-to-r from-red-500 to-red-300 transition-all;
+	}
+
+	.good::-webkit-progress-value {
 		@apply bg-gradient-to-r from-green-500 to-green-300 transition-all;
 	}
 
@@ -197,5 +241,15 @@
 	}
 	.button-class {
 		@apply hover-bg-blue-300 rounded-md bg-blue-400 p-2;
+	}
+
+	img {
+		image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+		image-rendering: -moz-crisp-edges; /* Firefox                        */
+		image-rendering: -o-crisp-edges; /* Opera                          */
+		image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+		image-rendering: pixelated; /* Universal support since 2021   */
+		image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+		-ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
 	}
 </style>
