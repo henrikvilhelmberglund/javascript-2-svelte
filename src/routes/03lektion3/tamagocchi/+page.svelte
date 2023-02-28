@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
 	class Pet {
 		constructor(name, animalType) {
 			this.name = name;
@@ -195,7 +196,7 @@
       {#key pet.state}
         
       <img
-      src="/images/{pet.animalType.toLowerCase()}_{pet.state}.gif"
+      src="{base}/images/{pet.animalType.toLowerCase()}_{pet.state}.gif"
       width="256"
       height="256"
       alt="" />
