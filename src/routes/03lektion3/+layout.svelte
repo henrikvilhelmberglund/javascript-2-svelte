@@ -1,6 +1,6 @@
 <script>
 	import Nav from "$lib/Nav.svelte";
-	let routes = ["01", "exercise", "02"];
+	let routes = ["01", "tamagocchi"];
 	let prefix = "/03lektion3";
 </script>
 
