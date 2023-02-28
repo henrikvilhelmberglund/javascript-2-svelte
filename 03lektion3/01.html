@@ -8,6 +8,7 @@
 		<meta http-equiv="content-security-policy" content="">
 		<link href="/javascript-2-svelte/_app/immutable/assets/_layout-48e54cc3.css" rel="stylesheet">
 		<link href="/javascript-2-svelte/_app/immutable/assets/Nav-f854b260.css" rel="stylesheet">
+		<link href="/javascript-2-svelte/_app/immutable/assets/_page-4a46075b.css" rel="stylesheet">
 		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/start-82b40eac.js">
 		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/chunks/index-7508de5e.js">
 		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/chunks/singletons-38789cea.js">
@@ -16,7 +17,10 @@
 		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/chunks/Nav-aadf363a.js">
 		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/chunks/_layout-fca24c55.js">
-		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/components/pages/_page.svelte-2409da94.js">
+		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/components/pages/03lektion3/_layout.svelte-42bf715b.js">
+		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/modules/pages/03lektion3/_layout.js-e992bf42.js">
+		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/chunks/_layout-da46b06b.js">
+		<link rel="modulepreload" href="/javascript-2-svelte/_app/immutable/components/pages/03lektion3/01/_page.svelte-1e5c2a54.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -31,18 +35,33 @@
 
 
 
+<nav class="uno-yv8dws"><div class="uno-s68r3h"></div>
+	<div class="uno-s68r3h"><a class="uno-yazl4n" href="/javascript-2-svelte/03lektion3/01">01</a><a class="uno-yazl4n" href="/javascript-2-svelte/03lektion3/tamagocchi">tamagocchi</a></div>
+</nav>
+<main class="uno-i9uabj"><h1 class="uno-x39txx">Ankademin AB</h1>
+	<h2 class="uno-b9bpw0">Lista över anställda</h2>
+	<ul class="uno-9mhbzm" id="employee-list"></ul>
+	<h2 class="uno-b9bpw0">Lägg till anställd</h2>
+	<input class="uno-ka1cf7" placeholder="förnamn" id="first-name" type="text">
+	<input class="uno-ka1cf7" placeholder="efternamn" id="last-name" type="text">
+	<label for="admin">Admin</label>
+	<input type="checkbox" name="admin" id="admin">
+	<button class="uno-saoozz" id="add">Lägg till </button>
+	<p class="uno-n7uh6q"></p>
+</main>
 
-		<script type="module" data-sveltekit-hydrate="mnu00o">
+
+		<script type="module" data-sveltekit-hydrate="1suj4xc">
 			import { start } from "/javascript-2-svelte/_app/immutable/start-82b40eac.js";
 
 			start({
 				assets: "/javascript-2-svelte",
 				env: {},
-				target: document.querySelector('[data-sveltekit-hydrate="mnu00o"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="1suj4xc"]').parentNode,
 				version: "1677590411323",
 				hydrate: {
-					node_ids: [0, 5],
-					data: [null,null],
+					node_ids: [0, 4, 15],
+					data: [null,null,null],
 					form: null,
 					error: null
 				}
