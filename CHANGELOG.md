@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.3](https://github.com/henrikvilhelmberglund/javascript-2-svelte/compare/v0.0.2...v0.0.3) (2023-02-28)
+
+
+### Features
+
+* :bento: add 2 duck animations ([e2ef152](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/e2ef1528f7ae9e96439d5813ce9675802525cbd4))
+* :sparkles: add state for img, set currentState from class, fix stuff ([c4658db](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c4658db634ff8bc083d0689167d6cbb762a47e2e))
+* :sparkles: add tamagocchi (WIP) ([59e9f13](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/59e9f13a7a36cff9388cceaa602a6b608ff2fab9))
+* :wrench: add transformerDirectives to config ([937db7c](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/937db7cb6b50deec1a5f2385437e2ccd29b906ee))
+* :package: add unoCSS transformerDirectives ([e111ac0](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/e111ac04355b82c52270539b8d08adf31b6c6504))
+* :sparkles: add more empty routes ([2271d25](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/2271d251d5c7407bf69bd51ac6ed262bc854216f))
+* :sparkles: add 01 route ([47a622c](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/47a622c7dc62ff15df21749a72668fffe401fb35))
+* :sparkles: add new layouts ([24a1a2e](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/24a1a2ed081f776b8f708020306ab1d98209a028))
+
+
+### Bug Fixes
+
+* :bug: add missing {base} for the images ([8e93243](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/8e932438385efa9ca87e051d84af3c2e59b6665c))
+* :bug: reenable SSR for build ([de8ff24](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/de8ff24a2fd38b54a3341cf746b196e380375346))
+* :art: remove/reorder files ([74e39ea](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/74e39ea001feccb2c78b86e61331aac43c0a9665))
+* :lipstick: make nav smaller ([dd9edef](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/dd9edefc3db3427c25a91d656af730153d676485))
+
 ## [0.0.2](https://github.com/henrikvilhelmberglund/javascript-2-svelte/compare/v0.0.1...v0.0.2) (2023-02-24)
 
 
