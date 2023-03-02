@@ -29,16 +29,22 @@ En lista över användarens todos som inte är utförda (/todos).
 		}
 
 		let userURL = "https://jsonplaceholder.typicode.com/users";
+		let postsURL = "https://jsonplaceholder.typicode.com/posts";
+		let todosURL = "https://jsonplaceholder.typicode.com/todos";
 
 		const fetchUsers = async (url) => {
-			const res = await fetch(url);
-			const json = await res.json();
-			// console.log(json);
-			return json;
+			try {
+				const res = await fetch(url);
+				const json = await res.json();
+				// console.log(json);
+				return json;
+			} catch (error) {
+				let h2 = document.createElement("h2");
+				h2.innerText = "Error loading the required data. Please try again later.";
+			}
 		};
 
 		const showUsers = (array, number) => {
-			userCount += 1;
 			let div = document.createElement("div");
 			div.className = "result";
 			let userDivs;
@@ -51,15 +57,7 @@ En lista över användarens todos som inte är utförda (/todos).
 				userDiv.className = "user";
 				console.log(user);
 				userDiv.innerHTML += `<p>${user.name}</p>`;
-				for (const [key, value] of Object.entries(user.address)) {
-					if (key === "city" || key === "street") {
-						// userDiv.innerHTML += `<p>${value}</p>`;
-					}
-				}
-				for (const [key, value] of Object.entries(user.company)) {
-					// if (key !== "catchPhrase") userDiv.innerHTML += `<p>${value}</p>`;
-				}
-				// div.append(userDiv);
+
 				userDiv.innerHTML += `<button id="show-info-${i}">Show info</button>`;
 				userDiv.innerHTML += `<button id="delete-${i}">Delete</button>`;
 
@@ -76,7 +74,7 @@ En lista över användarens todos som inte är utförda (/todos).
 				deleteBtn.addEventListener("click", async (e) => {
 					console.log("delete");
 					console.log(e.target.parentNode);
-          let users = await fetchUsers(userURL);
+					let users = await fetchUsers(userURL);
 					let main = document.querySelector("main");
 					let willRemove = confirm(`are you sure you want to remove ${users[i].name}?`);
 					if (willRemove) {
@@ -84,18 +82,18 @@ En lista över användarens todos som inte är utförda (/todos).
 					}
 				});
 			});
-
-			// console.log(todos)
 		};
 
-		let userCount = -1;
-
-		const showUser = (user) => {
-			let div = document.createElement("div");
-			div.className = "result-user";
-			// array = number ? [...Array(array[number])] : array;
-
+		const showUser = async (user) => {
+			let userPosts = await fetchUsers(postsURL);
+			let userTodos = await fetchUsers(todosURL);
 			let userDiv;
+			let div = document.createElement("div");
+
+			userPosts = userPosts.filter((post) => post.userId === user.id);
+			userTodos = userTodos.filter((todo) => todo.userId === user.id && todo.completed);
+
+			div.className = "result-user";
 			if (document.querySelector(".user-info")) {
 				userDiv = document.querySelector(".user-info");
 				userDiv.innerHTML = "";
@@ -103,17 +101,27 @@ En lista över användarens todos som inte är utförda (/todos).
 				userDiv = document.createElement("div");
 			}
 			userDiv.className = "user-info";
-			console.log(user);
 			userDiv.innerHTML += `<p>${user.name}</p>`;
+			userDiv.innerHTML += `<hr/>`;
 			for (const [key, value] of Object.entries(user.address)) {
-				if (key === "city" || key === "street") {
-					// userDiv.innerHTML += `<p>${value}</p>`;
+				if (key === "street") {
+					userDiv.innerHTML += `<p>${value}</p>`;
 				}
 			}
-			for (const [key, value] of Object.entries(user.company)) {
-				// if (key !== "catchPhrase") userDiv.innerHTML += `<p>${value}</p>`;
-			}
-			// div.append(userDiv);
+			userDiv.innerHTML += `<hr/>`;
+			userDiv.innerHTML += `<p>Post titles: </p><ul>`;
+			userPosts.forEach((post, i) => {
+				if (i < 5) {
+					userDiv.innerHTML += `<li>${post.title}</li>`;
+				}
+			});
+			userDiv.innerHTML += `<hr/>`;
+
+			userDiv.innerHTML += `<p>Unfinished todos: </p><ul>`;
+			userTodos.forEach((todo, i) => {
+				userDiv.innerHTML += `<li>${todo.title}</li>`;
+			});
+			userDiv.innerHTML += `<hr/>`;
 
 			main.append(userDiv);
 
@@ -141,7 +149,7 @@ En lista över användarens todos som inte är utförda (/todos).
 		}
 		.user-info {
 			position: fixed;
-			top: 50%;
+			top: 20%;
 			right: 0px;
 			padding: 1rem;
 			margin: 3rem;
