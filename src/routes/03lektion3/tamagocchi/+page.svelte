@@ -1,5 +1,5 @@
 <script>
-  import { base } from "$app/paths";
+	import { base } from "$app/paths";
 	class Pet {
 		constructor(name, animalType) {
 			this.name = name;
@@ -26,7 +26,7 @@
 			this.loneliness += 10;
 			this.checkValues();
 			this.state = "nap";
-      currentState = `You took a nap with ${this.name}! ${this.name} slept well and is less tired now.`;
+			currentState = `You took a nap with ${this.name}! ${this.name} slept well and is less tired now.`;
 		}
 
 		play() {
@@ -40,7 +40,7 @@
 			}
 			this.checkValues();
 			this.state = "play";
-      currentState = `You pet ${this.name}! ${this.name} wiggles its tail with happiness.`;
+			currentState = `You pet ${this.name}! ${this.name} wiggles its tail with happiness.`;
 		}
 
 		eat() {
@@ -48,7 +48,34 @@
 			this.tiredness += 10;
 			this.checkValues();
 			this.state = "play";
-      currentState = `You gave ${this.name} some delicious food! ${this.name} munched it down instantly.`;
+			currentState = `You gave ${this.name} some delicious food! ${this.name} munched it down instantly.`;
+		}
+
+		setActiveState() {
+			if (
+				this.tiredness > this.hunger &&
+				this.tiredness > this.loneliness &&
+				this.tiredness > this.happiness
+			) {
+				this.state = "tired";
+				currentState = `${this.name} is trying hard not to fall asleep!`;
+			}
+			if (
+				this.hunger > this.tiredness &&
+				this.hunger > this.loneliness &&
+				this.hunger > this.happiness
+			) {
+				this.state = "hungry";
+				currentState = `${this.name}'s stomach is making a strange sound!`;
+			}
+			if (
+				this.loneliness > this.hunger &&
+				this.loneliness > this.tiredness &&
+				this.loneliness > this.happiness
+			) {
+				this.state = "lonely";
+				currentState = `${this.name} is looking at you with a sad face!`;
+			}
 		}
 
 		checkValues() {
@@ -179,32 +206,42 @@
 					on:click={() => {
 						pet.nap();
 						pet = pet;
+						setTimeout(() => {
+              pet.setActiveState();
+              pet = pet;
+						}, 3000);
 					}}>Nap</button>
 				<button
 					class="button-class"
 					on:click={() => {
 						pet.play();
 						pet = pet;
+						setTimeout(() => {
+							pet.setActiveState();
+              pet = pet;
+						}, 3000);
 					}}>Play</button>
 				<button
 					class="button-class"
 					on:click={() => {
 						pet.eat();
-						pet = pet;
+            pet = pet;
+						setTimeout(() => {
+              pet.setActiveState();
+              pet = pet;
+						}, 3000);
 					}}>Eat</button>
 			</div>
-      {#key pet.state}
-        
-      <img
-      src="{base}/images/{pet.animalType.toLowerCase()}_{pet.state}.gif"
-      width="256"
-      height="256"
-      alt="" />
-      {/key}
+			{#key pet.state}
+				<img
+					src="{base}/images/{pet.animalType.toLowerCase()}_{pet.state}.gif"
+					width="256"
+					height="256"
+					alt="" />
+			{/key}
 		{/each}
 	</div>
-	<div>
-	</div>
+	<div />
 </article>
 {#if currentState}
 	<div class="flex flex-row items-center justify-center">
