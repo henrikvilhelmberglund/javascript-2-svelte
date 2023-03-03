@@ -198,7 +198,7 @@
 -->
 
 <main class="flex flex-col items-center  justify-center p-4 [&>*]:p-2">
-	<div class="flex-row rounded-lg bg-white [&>*]:p-1">
+	<div class="flex-row rounded-lg bg-white [&>*]:mx-1 [&>*]:p-1">
 		<input bind:value={name} class="rounded border" placeholder="Name" type="text" />
 		<!-- <label for="type">Select an animal</label> -->
 		<select bind:value={type} class="border" name="type" id="type">
@@ -206,16 +206,16 @@
 				<option value={type.toLowerCase()} selected={i === 0 ? "selected" : ""}>{type}</option>
 			{/each}
 		</select>
+		<button
+			on:click={() => {
+				activePet = addPet();
+				activePet = activePet;
+			}}
+			class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 	</div>
-	<button
-		on:click={() => {
-			activePet = addPet();
-			activePet = activePet;
-		}}
-		class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 
-	<div class="flex w-96 flex-col p-2">
-		<header class="flex flex-row gap-2">
+	<div class="fixed bottom-52 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
+		<header class="flex flex-row gap-1">
 			{#each pets || [] as pet, i}
 				<label
 					class:bg-pink-300={activePet === pet}
@@ -230,38 +230,45 @@
 					id="{pet.animalType}-{i}" />
 			{/each}
 		</header>
-		{#each Object.entries(activePet) as [key, value]}
-			<div class="flex flex-row justify-around gap-4">
-				{#if typeof value !== "number"}
-					<!-- 
-          <p>
-            {key}:{value}
-					</p>
-        -->
-				{:else if key !== "continuousStateInterval" && key !== "continuousStatUpdateInterval"}
-					<p>
-						{key}:
-					</p>
-					<label for={key}>{value}</label>
+		<div class="flex flex-col gap-2 rounded-md">
+			{#each Object.entries(activePet) as [key, value]}
+				{#if typeof value === "number" && key !== "continuousStateInterval" && key !== "continuousStatUpdateInterval"}
+					<div class="flex-row justify-end gap-2">
+						<p>
+							{key}:
+						</p>
+						<label for={key}>{value}</label>
 
-					{#if key === "happiness"}
-						<progress class:good={key === "happiness"} class="w-32" id={key} {value} max="100" />
-					{:else}
-						<progress class:bad={key !== "happiness"} class="w-32" id={key} {value} max="100" />
-					{/if}
+						{#if key === "happiness"}
+							<progress
+								class:good={key === "happiness"}
+								class="w-32 self-center"
+								id={key}
+								{value}
+								max="100" />
+						{:else}
+							<progress
+								class:bad={key !== "happiness"}
+								class="w-32 self-center"
+								id={key}
+								{value}
+								max="100" />
+						{/if}
+					</div>
 				{/if}
-			</div>
-		{/each}
+			{/each}
+		</div>
 
 		{#key activePet.state}
 			{#if activePet.animalType}
-				<div>
+				<div class="fixed top-0 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
 					<img
-						class="absolute top-[10%] left-[25%] z-[-1] w-[768px]"
+						class="absolute ml-auto mr-auto "
 						src="{base}/images/tamagocchi_{activePet.animalType.toLowerCase()}.png"
 						alt="" />
 
 					<img
+						class="absolute z-[1]"
 						src="{base}/images/{activePet.animalType.toLowerCase()}_{activePet.state}.gif"
 						width="256"
 						height="256"
@@ -269,9 +276,12 @@
 				</div>
 			{/if}
 		{/key}
-		<div class="flex flex-row justify-around gap-4">
-			<!-- three buttons -->
-			{#each possibleActions as action}
+	</div>
+	<!-- three buttons -->
+	<div
+		class="fixed -bottom-64 left-0 z-[100] flex h-[100%] w-[100%] flex-row items-center justify-center gap-20 text-2xl">
+		{#each possibleActions as action, i}
+			<div class:!mt-30={i === 1} class="my-10">
 				<button
 					class="button-class"
 					on:click={() => {
@@ -283,15 +293,15 @@
 							activePet = activePet;
 						}, updateDelay);
 					}}>{cap(action)}</button>
-			{/each}
-		</div>
+			</div>
+		{/each}
 	</div>
 	<div />
 </main>
 
 {#if currentState}
-	<div class="flex flex-row items-center justify-center">
-		<p class="py-12 text-xl">{currentState}</p>
+	<div class="top-50 fixed left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
+		<p class="bg-white rounded-xl border border-black border-1 p-2 text-xl">{currentState}</p>
 	</div>
 {/if}
 <!--   
@@ -305,9 +315,6 @@
     7. Hitta på egen funktionalitet! Din fantasi sätter gränsen :) Sätt t.ex en timer så att för varje 10 sekund, höjs samtliga värden förutom happiness med 10.
 -->
 <style>
-	img {
-		max-width: 300%;
-	}
 	::-webkit-progress-bar {
 		/* ... */
 	}
@@ -327,9 +334,9 @@
 	}
 	progress[value="0"]::-webkit-progress-value {
 		@apply bg-gradient-to-r from-green-500 to-green-500;
-		/* f
+	}
 	progress[value="10"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 1)); */
 	}
 	progress[value="20"]::-webkit-progress-value {
@@ -372,16 +379,17 @@
 	progress[value]::-webkit-progress-bar {
 	}
 	.button-class {
-		@apply hover-bg-blue-300 rounded-md bg-blue-400 p-2;
+		@apply hover-bg-blue-300 z-200 rounded-full bg-blue-400 p-2;
 	}
 
 	img {
-		image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
-		image-rendering: -moz-crisp-edges; /* Firefox                        */
-		image-rendering: -o-crisp-edges; /* Opera                          */
-		image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-		image-rendering: pixelated; /* Universal support since 2021   */
-		image-rendering: optimize-contrast; /* CSS3 Proposed                  */
-		-ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
+		max-width: 300%;
+		image-rendering: optimizeSpeed;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: -o-crisp-edges;
+		image-rendering: -webkit-optimize-contrast;
+		image-rendering: pixelated;
+		image-rendering: optimize-contrast;
+		-ms-interpolation-mode: nearest-neighbor;
 	}
 </style>
