@@ -151,6 +151,10 @@
 	let updateDelay = 1000;
 
 	function addPet() {
+		pets.forEach((pet) => {
+			clearInterval(activePet.continuousStateInterval);
+			clearInterval(activePet.continuousStatUpdateInterval);
+		});
 		let pet = new Pet(name, type);
 		pets.push(pet);
 		pets = pets;
@@ -314,54 +318,54 @@
 
 	.bad::-webkit-progress-value {
 		/* @apply bg-gradient-to-r from-red-500 to-red-300 transition-all; */
-    @apply bg-indigo-700 transition-all;
+		@apply bg-indigo-700 transition-all;
 	}
 
 	.good::-webkit-progress-value {
 		@apply transition-all;
-    filter: hue-rotate(calc(70deg * 2));
+		filter: hue-rotate(calc(70deg * 2));
 	}
-  progress[value="0"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-green-500;
+	progress[value="0"]::-webkit-progress-value {
+		@apply bg-gradient-to-r from-green-500 to-green-500;
 		/* f
 	progress[value="10"]::-webkit-progress-value {
     @apply bg-gradient-to-r from-green-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 1)); */
 	}
 	progress[value="20"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-green-500;
+		@apply bg-gradient-to-r from-green-500 to-green-500;
 		/* filter: hue-rotate(calc(10deg * 2)); */
 	}
 	progress[value="30"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-green-500;
+		@apply bg-gradient-to-r from-green-500 to-green-500;
 		/* filter: hue-rotate(calc(10deg * 3)); */
 	}
 	progress[value="40"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-green-500;
+		@apply bg-gradient-to-r from-green-500 to-green-500;
 		/* filter: hue-rotate(calc(10deg * 4)); */
 	}
 	progress[value="50"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-orange-500;
+		@apply bg-gradient-to-r from-green-500 to-orange-500;
 		/* filter: hue-rotate(calc(10deg * 5)); */
 	}
 	progress[value="60"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-orange-500;
+		@apply bg-gradient-to-r from-green-500 to-orange-500;
 		/* filter: hue-rotate(calc(10deg * 6)); */
 	}
 	progress[value="70"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-orange-500;
+		@apply bg-gradient-to-r from-green-500 to-orange-500;
 		/* filter: hue-rotate(calc(10deg * 7)); */
 	}
 	progress[value="80"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 8)); */
 	}
 	progress[value="90"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 9)); */
 	}
 	progress[value="100"]::-webkit-progress-value {
-    @apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 10)); */
 	}
 
