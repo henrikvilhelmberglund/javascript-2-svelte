@@ -318,38 +318,51 @@
 	}
 
 	.good::-webkit-progress-value {
-		@apply bg-orange-400 transition-all;
+		@apply transition-all;
+    filter: hue-rotate(calc(70deg * 2));
 	}
-
+  progress[value="0"]::-webkit-progress-value {
+    @apply bg-gradient-to-r from-green-500 to-green-500;
+		/* f
 	progress[value="10"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 1));
+    @apply bg-gradient-to-r from-green-500 to-red-500;
+		/* filter: hue-rotate(calc(10deg * 1)); */
 	}
 	progress[value="20"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 2));
+    @apply bg-gradient-to-r from-green-500 to-green-500;
+		/* filter: hue-rotate(calc(10deg * 2)); */
 	}
 	progress[value="30"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 3));
+    @apply bg-gradient-to-r from-green-500 to-green-500;
+		/* filter: hue-rotate(calc(10deg * 3)); */
 	}
 	progress[value="40"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 4));
+    @apply bg-gradient-to-r from-green-500 to-green-500;
+		/* filter: hue-rotate(calc(10deg * 4)); */
 	}
 	progress[value="50"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 5));
+    @apply bg-gradient-to-r from-green-500 to-orange-500;
+		/* filter: hue-rotate(calc(10deg * 5)); */
 	}
 	progress[value="60"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 6));
+    @apply bg-gradient-to-r from-green-500 to-orange-500;
+		/* filter: hue-rotate(calc(10deg * 6)); */
 	}
 	progress[value="70"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 7));
+    @apply bg-gradient-to-r from-green-500 to-orange-500;
+		/* filter: hue-rotate(calc(10deg * 7)); */
 	}
 	progress[value="80"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 8));
+    @apply bg-gradient-to-r from-green-500 to-red-500;
+		/* filter: hue-rotate(calc(10deg * 8)); */
 	}
 	progress[value="90"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 9));
+    @apply bg-gradient-to-r from-green-500 to-red-500;
+		/* filter: hue-rotate(calc(10deg * 9)); */
 	}
 	progress[value="100"]::-webkit-progress-value {
-		filter: hue-rotate(calc(10deg * 10));
+    @apply bg-gradient-to-r from-green-500 to-red-500;
+		/* filter: hue-rotate(calc(10deg * 10)); */
 	}
 
 	progress[value]::-webkit-progress-bar {
