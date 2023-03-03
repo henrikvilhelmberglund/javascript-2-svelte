@@ -13,6 +13,7 @@
 		}
 
 		startStateInterval() {
+			clearInterval(this.continuousStateInterval);
 			this.continuousStateInterval = setInterval(() => {
 				this.setActiveState();
 				activePet = activePet;
@@ -20,6 +21,7 @@
 		}
 
 		startStatUpdateInterval() {
+			clearInterval(this.continuousStatUpdateInterval);
 			this.continuousStatUpdateInterval = setInterval(() => {
 				this.tiredness += 10;
 				this.hunger += 10;
@@ -214,6 +216,7 @@
 			on:click={() => {
 				activePet = addPet();
 				activePet = activePet;
+        activePet.setActiveState();
 			}}
 			class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 	</div>
@@ -299,8 +302,8 @@
 							activePet = activePet;
 							setTimeout(() => {
 								activePet.startStateInterval();
-								console.log("line 300");
-							}, 4000);
+							}, 3000);
+							console.log("line 300");
 						}}>{cap(action)}</button>
 				</div>
 			{/each}
