@@ -134,7 +134,14 @@
 		}
 	}
 
-	let name = "Darkwing Duck";
+	$: name =
+		type === "duck"
+			? "Darkwing Duck"
+			: type === "frog"
+			? "Froggy the Frog"
+			: type === "fish"
+			? "Fishi"
+			: "";
 	let type;
 	let types = ["Duck", "Frog", "Fish"];
 	let pets = [];
@@ -187,7 +194,7 @@
 -->
 
 <main class="flex flex-col items-center  justify-center p-4 [&>*]:p-2">
-	<div class="flex-row [&>*]:p-1">
+	<div class="flex-row rounded-lg bg-white [&>*]:p-1">
 		<input bind:value={name} class="rounded border" placeholder="Name" type="text" />
 		<!-- <label for="type">Select an animal</label> -->
 		<select bind:value={type} class="border" name="type" id="type">
@@ -204,11 +211,11 @@
 		class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 
 	<div class="flex w-96 flex-col p-2">
-		<header class="flex flex-row">
+		<header class="flex flex-row gap-2">
 			{#each pets || [] as pet, i}
 				<label
 					class:bg-pink-300={activePet === pet}
-					class:bg-pink-500={activePet !== pet}
+					class:bg-slate-300={activePet !== pet}
 					class="cursor-pointer rounded-md p-1"
 					for="{pet.animalType}-{i}">{pet.name}</label>
 				<input
@@ -246,7 +253,7 @@
 			{#if activePet.animalType}
 				<div>
 					<img
-						class="absolute top-0 left-[25%] z-[-1] w-[768px]"
+						class="absolute top-[10%] left-[25%] z-[-1] w-[768px]"
 						src="{base}/images/tamagocchi_{activePet.animalType.toLowerCase()}.png"
 						alt="" />
 
@@ -306,11 +313,43 @@
 	}
 
 	.bad::-webkit-progress-value {
-		@apply bg-gradient-to-r from-red-500 to-red-300 transition-all;
+		/* @apply bg-gradient-to-r from-red-500 to-red-300 transition-all; */
+    @apply bg-indigo-700 transition-all;
 	}
 
 	.good::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-green-300 transition-all;
+		@apply bg-orange-400 transition-all;
+	}
+
+	progress[value="10"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 1));
+	}
+	progress[value="20"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 2));
+	}
+	progress[value="30"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 3));
+	}
+	progress[value="40"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 4));
+	}
+	progress[value="50"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 5));
+	}
+	progress[value="60"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 6));
+	}
+	progress[value="70"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 7));
+	}
+	progress[value="80"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 8));
+	}
+	progress[value="90"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 9));
+	}
+	progress[value="100"]::-webkit-progress-value {
+		filter: hue-rotate(calc(10deg * 10));
 	}
 
 	progress[value]::-webkit-progress-bar {
