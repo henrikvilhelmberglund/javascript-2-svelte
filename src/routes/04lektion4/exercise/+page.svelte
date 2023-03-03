@@ -6,7 +6,7 @@
   // TODO fix nested layout
 </script>
 
-<Nav {routes} {prefix} />
+<!-- <Nav {routes} {prefix} /> -->
 <slot />
 
 <style>
