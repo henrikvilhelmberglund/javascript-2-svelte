@@ -26,7 +26,8 @@
 				this.loneliness += 10;
 				this.checkValues();
 				activePet = activePet;
-			}, updateDelay);
+				console.log("line 29");
+			}, statDelay);
 		}
 
 		nap() {
@@ -149,11 +150,12 @@
 	let possibleActions = ["nap", "play", "eat"];
 	let activePet = {};
 	let updateDelay = 1000;
+	let statDelay = 10000;
 
 	function addPet() {
 		pets.forEach((pet) => {
-			clearInterval(activePet.continuousStateInterval);
-			clearInterval(activePet.continuousStatUpdateInterval);
+			clearInterval(pet.continuousStateInterval);
+			clearInterval(pet.continuousStatUpdateInterval);
 		});
 		let pet = new Pet(name, type);
 		pets.push(pet);
@@ -161,7 +163,8 @@
 
 		pet.startStateInterval();
 		pet.startStatUpdateInterval();
-		console.log(pet.continuousStatUpdateInterval);
+		console.log("line 166");
+		// console.log(pet.continuousStatUpdateInterval);
 		// activePet = pet;
 
 		return pet;
@@ -172,14 +175,15 @@
 	}
 
 	function setActivePet(clickedPet) {
-		clearInterval(activePet.continuousStateInterval);
-		clearInterval(activePet.continuousStatUpdateInterval);
+		pets.forEach((pet) => {
+			clearInterval(pet.continuousStateInterval);
+			clearInterval(pet.continuousStatUpdateInterval);
+		});
 		activePet = clickedPet;
 		activePet.startStateInterval();
 		activePet.startStatUpdateInterval();
+		console.log("line 184");
 	}
-
-	// createAnimalInstance();
 </script>
 
 <!-- 
@@ -214,8 +218,9 @@
 			class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 	</div>
 
-	<div class="fixed bottom-56 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center pointer-events-none">
-		<header class="flex flex-row pb-4 pointer-events-initial gap-4">
+	<div
+		class="pointer-events-none fixed bottom-56 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
+		<header class="pointer-events-initial flex flex-row gap-4 pb-4">
 			{#each pets || [] as pet, i}
 				<label
 					class:bg-pink-300={activePet === pet}
@@ -230,45 +235,48 @@
 					id="{pet.animalType}-{i}" />
 			{/each}
 		</header>
-		<div class="flex flex-col gap-2 bg-white w-72 border-solid border-1 border-black rounded-md">
-			{#each Object.entries(activePet) as [key, value]}
-				{#if typeof value === "number" && key !== "continuousStateInterval" && key !== "continuousStatUpdateInterval"}
-					<div class="flex-row justify-end gap-2">
-						<p>
-							{key}:
-						</p>
-						<label for={key}>{value}</label>
+		{#if activePet.animalType}
+			<div class="border-1 flex w-72 flex-col gap-2 rounded-md border-solid border-black bg-white">
+				{#each Object.entries(activePet) as [key, value]}
+					{#if typeof value === "number" && key !== "continuousStateInterval" && key !== "continuousStatUpdateInterval"}
+						<div class="flex-row justify-end gap-2">
+							<p>
+								{key}:
+							</p>
+							<label for={key}>{value}</label>
 
-						{#if key === "happiness"}
-							<progress
-								class:good={key === "happiness"}
-								class="w-32 self-center"
-								id={key}
-								{value}
-								max="100" />
-						{:else}
-							<progress
-								class:bad={key !== "happiness"}
-								class="w-32 self-center"
-								id={key}
-								{value}
-								max="100" />
-						{/if}
-					</div>
-				{/if}
-			{/each}
-		</div>
+							{#if key === "happiness"}
+								<progress
+									class:good={key === "happiness"}
+									class="w-32 self-center"
+									id={key}
+									{value}
+									max="100" />
+							{:else}
+								<progress
+									class:bad={key !== "happiness"}
+									class="w-32 self-center"
+									id={key}
+									{value}
+									max="100" />
+							{/if}
+						</div>
+					{/if}
+				{/each}
+			</div>
+		{/if}
 
 		{#key activePet.state}
 			{#if activePet.animalType}
-				<div class="fixed top-0 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
+				<div
+					class="pointer-events-none fixed top-0 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
 					<img
 						class="absolute ml-auto mr-auto "
 						src="{base}/images/tamagocchi_{activePet.animalType.toLowerCase()}.png"
 						alt="" />
 
 					<img
-						class="absolute z-[1]"
+						class="absolute z-[1] mix-blend-overlay"
 						src="{base}/images/{activePet.animalType.toLowerCase()}_{activePet.state}.gif"
 						width="256"
 						height="256"
@@ -278,30 +286,34 @@
 		{/key}
 	</div>
 	<!-- three buttons -->
-	<div
-		class="fixed -bottom-64 left-0 z-[100] flex h-[100%] w-[100%] flex-row items-center justify-center gap-20 text-2xl">
-		{#each possibleActions as action, i}
-			<div class:!mt-30={i === 1} class="my-10">
-				<button
-					class="button-class"
-					on:click={() => {
-						clearInterval(activePet.continuousStateInterval);
-						activePet[action]();
-						activePet = activePet;
-						activePet.continuousStateInterval = setInterval(() => {
-							activePet.setActiveState();
+	{#if activePet.animalType}
+		<div
+			class="pointer-events-none fixed -bottom-64 left-0 z-[100] flex h-[100%] w-[100%] flex-row items-center justify-center gap-20 text-2xl">
+			{#each possibleActions as action, i}
+				<div class:!mt-30={i === 1} class="pointer-events-initial my-10">
+					<button
+						class="button-class"
+						on:click={() => {
+							clearInterval(activePet.continuousStateInterval);
+							activePet[action]();
 							activePet = activePet;
-						}, updateDelay);
-					}}>{cap(action)}</button>
-			</div>
-		{/each}
-	</div>
-	<div />
+							setTimeout(() => {
+								activePet.startStateInterval();
+								console.log("line 300");
+							}, 4000);
+						}}>{cap(action)}</button>
+				</div>
+			{/each}
+		</div>
+	{/if}
 </main>
 
 {#if currentState}
-	<div class="top-50 pointer-events-none fixed left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
-		<p class="pointer-events-initial bg-white rounded-xl border border-black border-1 p-2 text-xl">{currentState}</p>
+	<div
+		class="top-50 pointer-events-none fixed left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
+		<p class="pointer-events-initial border-1 rounded-xl border border-black bg-white p-2 text-xl">
+			{currentState}
+		</p>
 	</div>
 {/if}
 <!--   
