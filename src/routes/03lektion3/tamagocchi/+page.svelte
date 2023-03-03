@@ -214,8 +214,8 @@
 			class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 	</div>
 
-	<div class="fixed bottom-52 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
-		<header class="flex flex-row gap-1">
+	<div class="fixed bottom-56 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center pointer-events-none">
+		<header class="flex flex-row pb-4 pointer-events-initial gap-4">
 			{#each pets || [] as pet, i}
 				<label
 					class:bg-pink-300={activePet === pet}
@@ -230,7 +230,7 @@
 					id="{pet.animalType}-{i}" />
 			{/each}
 		</header>
-		<div class="flex flex-col gap-2 rounded-md">
+		<div class="flex flex-col gap-2 bg-white w-72 border-solid border-1 border-black rounded-md">
 			{#each Object.entries(activePet) as [key, value]}
 				{#if typeof value === "number" && key !== "continuousStateInterval" && key !== "continuousStatUpdateInterval"}
 					<div class="flex-row justify-end gap-2">
@@ -300,8 +300,8 @@
 </main>
 
 {#if currentState}
-	<div class="top-50 fixed left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
-		<p class="bg-white rounded-xl border border-black border-1 p-2 text-xl">{currentState}</p>
+	<div class="top-50 pointer-events-none fixed left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
+		<p class="pointer-events-initial bg-white rounded-xl border border-black border-1 p-2 text-xl">{currentState}</p>
 	</div>
 {/if}
 <!--   
