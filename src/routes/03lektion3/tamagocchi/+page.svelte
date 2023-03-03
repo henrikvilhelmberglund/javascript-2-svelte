@@ -1,5 +1,6 @@
 <script>
 	import { base } from "$app/paths";
+
 	class Pet {
 		constructor(name, animalType) {
 			this.name = name;
@@ -11,15 +12,28 @@
 			this.state = "idle";
 		}
 
-		createInterval() {
-			// console.log("moo");
-			this.tiredness += 10;
-			this.hunger += 10;
-			this.loneliness += 10;
-			this.checkValues();
+		startStateInterval() {
+			this.continuousStateInterval = setInterval(() => {
+				this.setActiveState();
+				activePet = activePet;
+			}, updateDelay);
+		}
+
+		startStatUpdateInterval() {
+			this.continuousStatUpdateInterval = setInterval(() => {
+				this.tiredness += 10;
+				this.hunger += 10;
+				this.loneliness += 10;
+				this.checkValues();
+				activePet = activePet;
+			}, updateDelay);
 		}
 
 		nap() {
+			if (this.tiredness < 30) {
+				currentState = `${this.name} is too energetic to sleep!`;
+				return false;
+			}
 			this.tiredness -= 40;
 			this.happiness -= 10;
 			this.hunger += 10;
@@ -30,45 +44,58 @@
 		}
 
 		play() {
-			if (this.tiredness < 70) {
-				this.happiness += 30;
-				this.hunger += 20;
-				this.tiredness += 20;
-				this.loneliness -= 40;
-			} else {
-				console.log("too tired");
+			if (this.tiredness > 70) {
+				currentState = `${this.name} is too tired to play right now!`;
+				return false;
 			}
+			this.happiness += 30;
+			this.hunger += 20;
+			this.tiredness += 20;
+			this.loneliness -= 40;
+
 			this.checkValues();
 			this.state = "play";
 			currentState = `You pet ${this.name}! ${this.name} wiggles its tail with happiness.`;
 		}
 
 		eat() {
+			if (this.hunger < 40) {
+				currentState = `${this.name} is already full!`;
+				return false;
+			}
 			this.hunger -= 60;
 			this.tiredness += 10;
 			this.checkValues();
-			this.state = "play";
+			this.state = "eat";
 			currentState = `You gave ${this.name} some delicious food! ${this.name} munched it down instantly.`;
 		}
 
 		setActiveState() {
-			if (
-				this.tiredness > this.hunger &&
-				this.tiredness > this.loneliness &&
+			if (this.hunger === this.loneliness && this.hunger === this.tiredness) {
+				this.state = "idle";
+				currentState = `${this.name} is feeling very average.`;
+			} else if (
+				this.happiness >= this.hunger &&
+				this.happiness >= this.loneliness &&
+				this.happiness >= this.tiredness
+			) {
+				this.state = "happy";
+				currentState = `${this.name} is happy! Good job!`;
+			} else if (
+				this.tiredness >= this.hunger &&
+				this.tiredness >= this.loneliness &&
 				this.tiredness > this.happiness
 			) {
 				this.state = "tired";
 				currentState = `${this.name} is trying hard not to fall asleep!`;
-			}
-			if (
+			} else if (
 				this.hunger > this.tiredness &&
-				this.hunger > this.loneliness &&
-				this.hunger > this.happiness
+				this.hunger >= this.loneliness &&
+				this.hunger >= this.happiness
 			) {
 				this.state = "hungry";
 				currentState = `${this.name}'s stomach is making a strange sound!`;
-			}
-			if (
+			} else if (
 				this.loneliness > this.hunger &&
 				this.loneliness > this.tiredness &&
 				this.loneliness > this.happiness
@@ -108,32 +135,40 @@
 	}
 
 	let name = "Darkwing Duck";
-	let type = "Duck";
+	let type;
 	let types = ["Duck", "Frog", "Fish"];
 	let pets = [];
-	let pet = {};
+	let currentState;
+	let possibleActions = ["nap", "play", "eat"];
+	let activePet = {};
+	let updateDelay = 1000;
 
-	function addAnimal() {
-		pet = new Pet(name, type);
+	function addPet() {
+		let pet = new Pet(name, type);
 		pets.push(pet);
 		pets = pets;
+
+		pet.startStateInterval();
+		pet.startStatUpdateInterval();
+		console.log(pet.continuousStatUpdateInterval);
+		// activePet = pet;
+
 		return pet;
 	}
 
-	let currentState;
-	let animal;
-
-	function createAnimalInstance() {
-		animal = addAnimal();
-
-		setInterval(() => {
-			animal.createInterval();
-			animal = animal;
-		}, 10000);
-		return animal;
+	function cap(s) {
+		return s ? s[0].toUpperCase() + s.slice(1) : "";
 	}
 
-	createAnimalInstance();
+	function setActivePet(clickedPet) {
+		clearInterval(activePet.continuousStateInterval);
+		clearInterval(activePet.continuousStatUpdateInterval);
+		activePet = clickedPet;
+		activePet.startStateInterval();
+		activePet.startStatUpdateInterval();
+	}
+
+	// createAnimalInstance();
 </script>
 
 <!-- 
@@ -151,98 +186,98 @@
   c. En knapp.
 -->
 
-<main class="p-4 [&>*]:p-2">
-	<input bind:value={name} class="rounded border" placeholder="Name" type="text" />
-	<!-- <label for="type">Select an animal</label> -->
-	<select bind:value={type} class="border" name="type" id="type">
-		{#each types as type}
-			<option value={type.toLowerCase()}>{type}</option>
-		{/each}
-	</select>
+<main class="flex flex-col items-center  justify-center p-4 [&>*]:p-2">
+	<div class="flex-row [&>*]:p-1">
+		<input bind:value={name} class="rounded border" placeholder="Name" type="text" />
+		<!-- <label for="type">Select an animal</label> -->
+		<select bind:value={type} class="border" name="type" id="type">
+			{#each types as type, i}
+				<option value={type.toLowerCase()} selected={i === 0 ? "selected" : ""}>{type}</option>
+			{/each}
+		</select>
+	</div>
 	<button
 		on:click={() => {
-			animal = addAnimal();
-
-			setInterval(() => {
-				animal.createInterval();
-				animal = animal;
-			}, 10000);
+			activePet = addPet();
+			activePet = activePet;
 		}}
 		class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
-</main>
 
-<article class="flex flex-row">
 	<div class="flex w-96 flex-col p-2">
-		{#each pets as pet}
-			{#key animal}
-				{#each Object.entries(pet) ?? [] as [key, value]}
-					<div class="flex flex-row justify-around gap-4">
-						{#if typeof value !== "number"}
-							<p>
-								{key}:{value}
-							</p>
-						{:else}
-							<p>
-								{key}:
-							</p>
-							<label for={key}>{value}</label>
-							{#if key === "happiness"}
-								<progress
-									class:good={key === "happiness"}
-									class="w-32"
-									id={key}
-									{value}
-									max="100" />
-							{:else}
-								<progress class:bad={key !== "happiness"} class="w-32" id={key} {value} max="100" />
-							{/if}
-						{/if}
-					</div>
-				{/each}
-			{/key}
+		<header class="flex flex-row">
+			{#each pets || [] as pet, i}
+				<label
+					class:bg-pink-300={activePet === pet}
+					class:bg-pink-500={activePet !== pet}
+					class="cursor-pointer rounded-md p-1"
+					for="{pet.animalType}-{i}">{pet.name}</label>
+				<input
+					on:click={() => setActivePet(pet)}
+					class="hidden"
+					type="radio"
+					name="pets"
+					id="{pet.animalType}-{i}" />
+			{/each}
+		</header>
+		{#each Object.entries(activePet) as [key, value]}
 			<div class="flex flex-row justify-around gap-4">
-				<button
-					class="button-class"
-					on:click={() => {
-						pet.nap();
-						pet = pet;
-						setTimeout(() => {
-              pet.setActiveState();
-              pet = pet;
-						}, 3000);
-					}}>Nap</button>
-				<button
-					class="button-class"
-					on:click={() => {
-						pet.play();
-						pet = pet;
-						setTimeout(() => {
-							pet.setActiveState();
-              pet = pet;
-						}, 3000);
-					}}>Play</button>
-				<button
-					class="button-class"
-					on:click={() => {
-						pet.eat();
-            pet = pet;
-						setTimeout(() => {
-              pet.setActiveState();
-              pet = pet;
-						}, 3000);
-					}}>Eat</button>
+				{#if typeof value !== "number"}
+					<!-- 
+          <p>
+            {key}:{value}
+					</p>
+        -->
+				{:else if key !== "continuousStateInterval" && key !== "continuousStatUpdateInterval"}
+					<p>
+						{key}:
+					</p>
+					<label for={key}>{value}</label>
+
+					{#if key === "happiness"}
+						<progress class:good={key === "happiness"} class="w-32" id={key} {value} max="100" />
+					{:else}
+						<progress class:bad={key !== "happiness"} class="w-32" id={key} {value} max="100" />
+					{/if}
+				{/if}
 			</div>
-			{#key pet.state}
-				<img
-					src="{base}/images/{pet.animalType.toLowerCase()}_{pet.state}.gif"
-					width="256"
-					height="256"
-					alt="" />
-			{/key}
 		{/each}
+
+		{#key activePet.state}
+			{#if activePet.animalType}
+				<div>
+					<img
+						class="absolute top-0 left-[25%] z-[-1] w-[768px]"
+						src="{base}/images/tamagocchi_{activePet.animalType.toLowerCase()}.png"
+						alt="" />
+
+					<img
+						src="{base}/images/{activePet.animalType.toLowerCase()}_{activePet.state}.gif"
+						width="256"
+						height="256"
+						alt="" />
+				</div>
+			{/if}
+		{/key}
+		<div class="flex flex-row justify-around gap-4">
+			<!-- three buttons -->
+			{#each possibleActions as action}
+				<button
+					class="button-class"
+					on:click={() => {
+						clearInterval(activePet.continuousStateInterval);
+						activePet[action]();
+						activePet = activePet;
+						activePet.continuousStateInterval = setInterval(() => {
+							activePet.setActiveState();
+							activePet = activePet;
+						}, updateDelay);
+					}}>{cap(action)}</button>
+			{/each}
+		</div>
 	</div>
 	<div />
-</article>
+</main>
+
 {#if currentState}
 	<div class="flex flex-row items-center justify-center">
 		<p class="py-12 text-xl">{currentState}</p>
@@ -259,6 +294,9 @@
     7. Hitta på egen funktionalitet! Din fantasi sätter gränsen :) Sätt t.ex en timer så att för varje 10 sekund, höjs samtliga värden förutom happiness med 10.
 -->
 <style>
+	img {
+		max-width: 300%;
+	}
 	::-webkit-progress-bar {
 		/* ... */
 	}
