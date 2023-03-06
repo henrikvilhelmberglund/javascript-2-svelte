@@ -156,7 +156,7 @@
 	function addPet() {
 		pets.forEach((pet) => {
 			clearInterval(pet.continuousStateInterval);
-			clearInterval(pet.continuousStatUpdateInterval);
+			// clearInterval(pet.continuousStatUpdateInterval);
 		});
 		let pet = new Pet(name, type);
 		pets.push(pet);
@@ -175,11 +175,11 @@
 	function setActivePet(clickedPet) {
 		pets.forEach((pet) => {
 			clearInterval(pet.continuousStateInterval);
-			clearInterval(pet.continuousStatUpdateInterval);
+			// clearInterval(pet.continuousStatUpdateInterval);
 		});
 		activePet = clickedPet;
 		activePet.startStateInterval();
-		activePet.startStatUpdateInterval();
+		// activePet.startStatUpdateInterval();
 	}
 </script>
 
