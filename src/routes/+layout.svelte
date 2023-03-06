@@ -10,4 +10,8 @@
 
 <slot />
 
-<style uno:preflights uno:safelist global></style>
+<style uno:preflights uno:safelist global>
+	:global(button) {
+		@apply hover-bg-blue-200 m-1 bg-blue-300 p-1 rounded-lg;
+	}
+</style>
