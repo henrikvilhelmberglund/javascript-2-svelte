@@ -198,11 +198,15 @@
   c. En knapp.
 -->
 
+<svelte:head>
+	<title>Tamagocchi</title>
+</svelte:head>
+
 <main class="flex flex-col items-center  justify-center p-4 [&>*]:p-2">
 	<div class="flex-row rounded-lg bg-white [&>*]:mx-1 [&>*]:p-1">
 		<input bind:value={name} class="rounded border" placeholder="Name" type="text" />
 		<!-- <label for="type">Select an animal</label> -->
-		<select bind:value={type} class="border" name="type" id="type">
+		<select bind:value={type} aria-label="pet type select" class="border" name="type" id="type">
 			{#each types as type, i}
 				<option value={type.toLowerCase()} selected={i === 0 ? "selected" : ""}>{type}</option>
 			{/each}
@@ -243,22 +247,13 @@
 								{key}:
 							</p>
 							<label for={key}>{value}</label>
-
-							{#if key === "happiness"}
-								<progress
-									class:good={key === "happiness"}
-									class="w-32 self-center"
-									id={key}
-									{value}
-									max="100" />
-							{:else}
-								<progress
-									class:bad={key !== "happiness"}
-									class="w-32 self-center"
-									id={key}
-									{value}
-									max="100" />
-							{/if}
+							<progress
+								class:good={key === "happiness"}
+								class:bad={key !== "happiness"}
+								class="w-32 self-center"
+								id={key}
+								{value}
+								max="100" />
 						</div>
 					{/if}
 				{/each}
