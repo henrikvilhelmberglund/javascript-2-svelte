@@ -28,7 +28,6 @@
 				this.loneliness += 10;
 				this.checkValues();
 				activePet = activePet;
-				console.log("line 29");
 			}, statDelay);
 		}
 
@@ -165,9 +164,6 @@
 
 		pet.startStateInterval();
 		pet.startStatUpdateInterval();
-		console.log("line 166");
-		// console.log(pet.continuousStatUpdateInterval);
-		// activePet = pet;
 
 		return pet;
 	}
@@ -184,7 +180,6 @@
 		activePet = clickedPet;
 		activePet.startStateInterval();
 		activePet.startStatUpdateInterval();
-		console.log("line 184");
 	}
 </script>
 
@@ -216,7 +211,7 @@
 			on:click={() => {
 				activePet = addPet();
 				activePet = activePet;
-        activePet.setActiveState();
+				activePet.setActiveState();
 			}}
 			class="rounded-md bg-emerald-400 p-2 hover:bg-emerald-300">Create animal</button>
 	</div>
@@ -226,8 +221,9 @@
 		<header class="pointer-events-initial flex flex-row gap-4 pb-4">
 			{#each pets || [] as pet, i}
 				<label
-					class:bg-pink-300={activePet === pet}
-					class:bg-slate-300={activePet !== pet}
+					class:bg-yellow-300={pet.animalType === "duck"}
+					class:bg-green-300={pet.animalType === "frog"}
+					class:bg-blue-300={pet.animalType === "fish"}
 					class="cursor-pointer rounded-md p-1"
 					for="{pet.animalType}-{i}">{pet.name}</label>
 				<input
@@ -340,18 +336,14 @@
 
 	.bad::-webkit-progress-value {
 		/* @apply bg-gradient-to-r from-red-500 to-red-300 transition-all; */
-		@apply bg-indigo-700 transition-all;
+		@apply transition-all;
 	}
 
-	.good::-webkit-progress-value {
-		@apply transition-all;
-		filter: hue-rotate(calc(70deg * 2));
-	}
 	progress[value="0"]::-webkit-progress-value {
 		@apply bg-gradient-to-r from-green-500 to-green-500;
 	}
 	progress[value="10"]::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 to-green-500;
 		/* filter: hue-rotate(calc(10deg * 1)); */
 	}
 	progress[value="20"]::-webkit-progress-value {
@@ -367,28 +359,33 @@
 		/* filter: hue-rotate(calc(10deg * 4)); */
 	}
 	progress[value="50"]::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-orange-500;
+		@apply bg-gradient-to-r from-green-500 via-green-500 to-orange-500;
 		/* filter: hue-rotate(calc(10deg * 5)); */
 	}
 	progress[value="60"]::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-orange-500;
+		@apply bg-gradient-to-r from-green-500 via-green-500 to-orange-500;
 		/* filter: hue-rotate(calc(10deg * 6)); */
 	}
 	progress[value="70"]::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-orange-500;
+		@apply bg-gradient-to-r from-green-500 via-green-500 to-orange-500;
 		/* filter: hue-rotate(calc(10deg * 7)); */
 	}
 	progress[value="80"]::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 via-orange-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 8)); */
 	}
 	progress[value="90"]::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 via-orange-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 9)); */
 	}
 	progress[value="100"]::-webkit-progress-value {
-		@apply bg-gradient-to-r from-green-500 to-red-500;
+		@apply bg-gradient-to-r from-green-500 via-orange-500 to-red-500;
 		/* filter: hue-rotate(calc(10deg * 10)); */
+	}
+
+	.good::-webkit-progress-value {
+		--at-apply: "bg-gradient-to-r !from-green-500 !to-green-300 transition-all";
+		/* filter: hue-rotate(calc(-30deg * 1)); */
 	}
 
 	progress[value]::-webkit-progress-bar {
