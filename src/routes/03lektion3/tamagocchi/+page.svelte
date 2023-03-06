@@ -275,12 +275,12 @@
 					class="pointer-events-none fixed top-0 left-0 z-[-1] flex h-[100%] w-[100%] items-center justify-center">
 					<img
 						class="absolute ml-auto mr-auto "
-						src="{base}/images/tamagocchi_{activePet.animalType.toLowerCase()}.png"
+						src="{base}/images/tamagocchi/tamagocchi_{activePet.animalType.toLowerCase()}.png"
 						alt="" />
 
 					<img
 						class="absolute z-[1] mix-blend-overlay"
-						src="{base}/images/{activePet.animalType.toLowerCase()}_{activePet.state}.gif"
+						src="{base}/images/{activePet.animalType.toLowerCase()}/{activePet.animalType.toLowerCase()}_{activePet.state}.gif"
 						width="256"
 						height="256"
 						alt="" />
