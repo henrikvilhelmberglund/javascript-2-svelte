@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/henrikvilhelmberglund/javascript-2-svelte/compare/v0.0.3...v0.0.4) (2023-03-06)
+
+
+### Features
+
+* :lipstick: add global button styling ([66c72be](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/66c72be99c65b0e24db23f8ce00db344324a2110))
+* :sparkles: enable svelte inspector ([a31a17a](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/a31a17a28d5f8bd9c5ac8897a8d62f1aa915e03a))
+* :memo: add TODO ([006f0a6](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/006f0a6df35b0c5fb99476f46b4b3a3b02d132fb))
+* :lipstick: add pointer events none, start debugging ([f271d7a](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/f271d7a9ce85a5cb9e4d3de6e3afe619a91da03d))
+* :bento: add overlay (not used) ([884f5b7](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/884f5b73a3155b15fa3f9223e3ae9a71a8c667f1))
+* :bento: add missing images ([01425b1](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/01425b12bc6171f202205d46af91195babbf731c))
+* :sparkles: add unocss.config.js file ([44e153a](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/44e153a7557f7f3111996a2d778644df29a75f98))
+* :package: update unocss and svelte ([35e499d](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/35e499d240cd49bfc061638bb756bab76f2adb7e))
+* :lipstick: styling progress bars ([de49a37](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/de49a3763740f3bbb09a1109c376b2433aa65f83))
+* :sparkles: add default name when picking type, add some more styling ([850e39c](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/850e39cc8a858fd01fb4db6e8a4f1799efe68b17))
+* :sparkles: add interval methods and class properties, some styling ([7e21fb2](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/7e21fb23684b700ce6ae316ea625a6ba6876eb45))
+* :bento: add images ([b581e3b](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/b581e3b701a81c444e2d873948f0f739a78feffb))
+* :sparkles: add new states ([9616008](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/9616008656ff0b8ad412131c040ff1264535c732))
+* :sparkles: finish exercise ([97c8882](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/97c888284b61fd9bf4410f8ac9a2d084c1c09a17))
+* :sparkles: add 04lektion4 exerciseJS 01, 02 and 03 ([8ba0350](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/8ba035035dd90fb954f6ded7f391d2022908f352))
+* :sparkles: add lektion04 routes ([7a49332](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/7a49332243c5dd923abdf27f755feb36aba2e177))
+
+
+### Bug Fixes
+
+* :bug: make layout into a real layout ([0ac436e](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/0ac436ef612c6487b901101d36f1bcca4e9433ee))
+* :poop: no idea how this todo thing works ([ce1756a](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/ce1756ac0222a484b9cc749bec32971a71210e0a))
+* :art: optimization ([146049c](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/146049ccbd893c370d895f70fba978dad6facee0))
+* :bug: disable stats for other pets pausing when inactive ([5926def](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/5926def96f0a2dc8bc40cafe093cc7b4a72e60ab))
+* :lipstick: progress bar styling, button colors per pet type ([4bde861](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/4bde8610e4aece25843d34873c94b5d8215b65e8))
+* :bento: update animation delay ([0d7a3dc](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/0d7a3dc353672a84929475ee68298710ae19d4c1))
+* :pencil2: fix another typo 😱 ([41f361a](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/41f361a65b3f939f578ca3c708d538c3b035a1e3))
+* :pencil2: fix typo ([c8e6429](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c8e64299cd57e711badc2cf1af36b05261b6c39a))
+* :truck: move images to subfolders ([45acf33](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/45acf339c07633841116681374799568a7a4ac24))
+* :bug: add Nav to layouts and pass whole route URLs as prefix, pass level for color ([c9e3a42](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c9e3a4207d1cd072208882627f27fe3f47d37f09))
+* :bug: fix nested navs ([420293c](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/420293c98912bd28006c23a37bb7a7be0f61d542))
+* :bug: clear interval when running method ([0bcecae](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/0bcecae3046ca379ecde354ae85570f0ef061cf5))
+* :lipstick: add pointer events none to avoid getting screwed by huge divs etc ([5de0700](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/5de07008b54dc8e985f8f5427d38a1bb13993817))
+* :lipstick: more styling ([4ecc5a3](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/4ecc5a337fd8f6db1ae3949e7463ef1b2e74ff00))
+* :bento: export bigger tamagocchi backgrounds ([aad290f](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/aad290f10d6c2b854761ba62f9610d90b9510fe8))
+* :fire: remove unused .gif ([1731915](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/1731915f319002b0049df49295e9f6a26031a8e2))
+* :bug: hide nested Navs for now to allow building ([31dd7a7](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/31dd7a7f4380655f26132f18f189b10d6b85dd02))
+* :bug: fix bug by clearing intervals for existing pets ([bd87851](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/bd8785185a154576c5e9c4682f541c284ab00eb8))
+
 ## [0.0.3](https://github.com/henrikvilhelmberglund/javascript-2-svelte/compare/v0.0.2...v0.0.3) (2023-02-28)
 
 
