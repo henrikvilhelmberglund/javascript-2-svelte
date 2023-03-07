@@ -32,12 +32,15 @@ Företag (Namn, typ av företag)
 		};
 
 		const showUsers = (array, number) => {
+      main = document.querySelector("main");
+			main.innerHTML = "";
+      console.log(array);
 			let div = document.createElement("div");
 			div.className = "result";
 			array = number ? [...Array(array[number])] : array;
 			array.forEach((user) => {
 				let userDiv;
-				if (document.querySelector(".user")) {
+				if (document.querySelector(".user") && number) {
 					userDiv = document.querySelector(".user");
 					userDiv.innerHTML = "";
 				} else {
@@ -108,7 +111,7 @@ Företag (Namn, typ av företag)
 	</style>
 </svelte:head>
 
-<button id="show">Show</button>
+<button id="show">Get profiles</button>
 
 <input id="user-number" type="number" max="10" />
 <button id="show-user">Show user by number</button>
