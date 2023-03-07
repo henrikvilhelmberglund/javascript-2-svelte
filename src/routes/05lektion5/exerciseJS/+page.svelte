@@ -44,18 +44,6 @@
 		// free checkbox
 		//  A factor describing the cost of the event with zero being free [0, 1]
 
-		let typeOptions = [
-			"education",
-			"recreational",
-			"social",
-			"diy",
-			"charity",
-			"cooking",
-			"relaxation",
-			"music",
-			"busywork",
-		];
-
 		async function displayActivity() {
 			let res = await getRandomActivity();
 			let { activity, type, participants, price, link, key, accessibility } = JSON.parse(res);
@@ -68,24 +56,36 @@
 
 		async function filterActivity() {
 			let radioValue = document.querySelector(`input[type="radio"]:checked`).value;
-			console.log(radioValue);
+			let dropDownValue = document.querySelector(`option:checked`).value;
+			let checkBoxValue = document.querySelector(`input[type="checkbox"]:checked`)?.value;
+			// console.log(`checkBoxValue: ${checkBoxValue}`)
+			console.log(dropDownValue);
 			let params = new URLSearchParams({
 				participants: radioValue,
+				...(dropDownValue !== "any" ? { type: dropDownValue } : {}),
+				...(checkBoxValue ? { price: 0 } : {}),
 			});
 			let res = await getRandomActivity(params);
-			let { activity, type, participants, price, link, key, accessibility } = JSON.parse(res);
-			console.log(`radioValue:${radioValue}`);
+			let { activity, type, participants, price, link, key, accessibility, error } =
+				JSON.parse(res);
+			// console.log(`radioValue:${radioValue}`);
 			main.innerHTML = "";
 			render(radioValue);
 			let activityText = document.querySelector(".activity-text");
-			activityText.innerHTML = `${activity}`;
+			activityText.innerHTML = `${error ? error : activity}`;
 		}
 
-		function render(selectedValue) {
+		function render(selectedValue, selectedType, selectedBool) {
 			if (!selectedValue) {
 				selectedValue = 1;
 			}
-			console.log(`selectedValue: ${selectedValue}`);
+			if (!selectedType) {
+				selectedValue = 1;
+			}
+			if (!selectedBool) {
+				selectedBool = false;
+			}
+			// console.log(`selectedValue: ${selectedValue}`);
 			main.innerHTML = "";
 			let button = document.createElement("button");
 			let filterButton = document.createElement("button");
@@ -96,6 +96,8 @@
 			filterDiv.className = "filter-div";
 			filterDiv.append(filterButton);
 			createRadio(filterDiv, selectedValue);
+			createDropdown(filterDiv, selectedType);
+			createCheckbox(filterDiv, selectedBool);
 			main.append(filterDiv);
 			let oldRadio = document.querySelectorAll(`input[type="radio"]`)[selectedValue - 1];
 			oldRadio.checked = true;
@@ -118,7 +120,7 @@
 		}
 
 		function createRadio(element, defaultValue) {
-			console.log(`defaultValue: ${defaultValue}`);
+			// console.log(`defaultValue: ${defaultValue}`);
 
 			let radioValues = [1, 2, 3, 4];
 			radioValues.forEach((value, i) => {
@@ -138,6 +140,56 @@
 			});
 		}
 
+		function createDropdown(element, defaultValue) {
+			let typeOptions = [
+				"any",
+				"education",
+				"recreational",
+				"social",
+				"diy",
+				"charity",
+				"cooking",
+				"relaxation",
+				"music",
+				"busywork",
+			];
+			// console.log(`defaultValue: ${defaultValue}`);
+			let select = document.createElement("select");
+
+			typeOptions.forEach((value, i) => {
+				let label = document.createElement("label");
+				label.htmlFor = `radio_${value}`;
+				label.innerText = value;
+				let option = document.createElement("option");
+				option.type = "option";
+
+				option.name = "type";
+				option.id = `option_${value}`;
+				select.className = "dropdown-input";
+				option.value = value;
+				option.innerText = value;
+
+				select.append(option);
+				select.append(label);
+			});
+			element.append(select);
+		}
+
+		function createCheckbox(element, defaultValue) {
+			// console.log(`defaultValue: ${defaultValue}`);
+			let checkbox = document.createElement("input");
+			checkbox.type = "checkbox";
+			checkbox.id = `checkbox-id`;
+			checkbox.className = "dropdown-input";
+			checkbox.checked = defaultValue;
+			let label = document.createElement("label");
+			label.htmlFor = `checkbox-id`;
+			label.innerText = "Free only";
+
+			element.append(checkbox);
+			element.append(label);
+		}
+
 		render();
 	});
 </script>
@@ -155,6 +207,9 @@
 		display: block;
 	}
 	:global(.radio-input) {
+		margin: 0 0 0 1rem;
+	}
+	:global(.dropdown-input) {
 		margin: 0 0 0 1rem;
 	}
 </style>
