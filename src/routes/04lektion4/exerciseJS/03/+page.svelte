@@ -71,12 +71,12 @@ En lista över användarens todos som inte är utförda (/todos).
 
 				deleteBtn.addEventListener("click", async (e) => {
 					console.log("delete");
-					console.log(e.target.parentNode.parentNode);
+					console.log(userDiv);
 					let users = await fetchUsers(userURL);
 					let main = document.querySelector("main");
 					let willRemove = confirm(`are you sure you want to remove ${users[i].name}?`);
 					if (willRemove) {
-						main.removeChild(e.target.parentNode.parentNode);
+						main.removeChild(userDiv);
 					}
 				});
 			});
