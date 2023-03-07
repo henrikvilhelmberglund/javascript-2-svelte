@@ -57,9 +57,7 @@ En lista över användarens todos som inte är utförda (/todos).
 				userDiv.className = "user";
 				console.log(user);
 				userDiv.innerHTML += `<p>${user.name}</p>`;
-
-				userDiv.innerHTML += `<button id="show-info-${i}">Show info</button>`;
-				userDiv.innerHTML += `<button id="delete-${i}">Delete</button>`;
+        userDiv.innerHTML += `<div class="button-div"><button id="show-info-${i}">Show info</button><button id="delete-${i}">Delete</button></div>`
 
 				main.append(userDiv);
 				let showInfoBtn = document.querySelector(`#show-info-${i}`);
@@ -73,12 +71,12 @@ En lista över användarens todos som inte är utförda (/todos).
 
 				deleteBtn.addEventListener("click", async (e) => {
 					console.log("delete");
-					console.log(e.target.parentNode);
+					console.log(e.target.parentNode.parentNode);
 					let users = await fetchUsers(userURL);
 					let main = document.querySelector("main");
 					let willRemove = confirm(`are you sure you want to remove ${users[i].name}?`);
 					if (willRemove) {
-						main.removeChild(e.target.parentNode);
+						main.removeChild(e.target.parentNode.parentNode);
 					}
 				});
 			});
@@ -142,8 +140,8 @@ En lista över användarens todos som inte är utförda (/todos).
 <svelte:head>
 	<style>
 		.user {
-			padding: 1rem;
-			margin: 3rem;
+			padding: 0rem;
+			margin: 2rem;
 			border-radius: 1rem;
 			width: 300px;
 		}
@@ -156,6 +154,9 @@ En lista över användarens todos som inte är utförda (/todos).
 			border-radius: 1rem;
 			width: 300px;
 		}
+    .button-div {
+      flex-direction: row;
+    }
 	</style>
 </svelte:head>
 
