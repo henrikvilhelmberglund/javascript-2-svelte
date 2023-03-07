@@ -9,21 +9,26 @@
 <nav class="flex flex-col">
 	<div class="flex-row [&>*]:m-2">
 		{#if level === 1}
-			<a class="rounded-lg bg-purple-400 px-4 text-black" href="{base}/">Home</a>
+			<a class="rounded-lg bg-purple-400 px-4 text-black hover:bg-purple-500" href="{base}/"
+				>Home</a>
 		{/if}
 		{#each routes as route}
 			{#if level === 1}
-				<a class="rounded-lg bg-purple-400 px-4 text-black" href="{base}{prefix}{route}"
-					>{route.replace("/", "")}</a>
+				<a
+					class="rounded-lg bg-purple-400 px-4 text-black hover:bg-purple-500"
+					href="{base}{prefix}{route}">{route.replace("/", "")}</a>
 			{:else if level === 2}
-				<a class="rounded-lg bg-violet-400 px-4 text-black" href="{base}{prefix}{route}"
-					>{route.replace("/", "")}</a>
+				<a
+					class="rounded-lg bg-violet-400 px-4 text-black hover:bg-violet-500"
+					href="{base}{prefix}{route}">{route.replace("/", "")}</a>
 			{:else if level === 3}
-				<a class="rounded-lg bg-indigo-400 px-4 text-black" href="{base}{prefix}{route}"
-					>{route.replace("/", "")}</a>
+				<a
+					class="rounded-lg bg-indigo-400 px-4 text-black hover:bg-indigo-500"
+					href="{base}{prefix}{route}">{route.replace("/", "")}</a>
 			{:else if level === 4}
-				<a class="rounded-lg bg-blue-400 px-4 text-black" href="{base}{prefix}{route}"
-					>{route.replace("/", "")}</a>
+				<a
+					class="rounded-lg bg-blue-400 px-4 text-black hover:bg-blue-500"
+					href="{base}{prefix}{route}">{route.replace("/", "")}</a>
 			{/if}
 		{/each}
 	</div>
