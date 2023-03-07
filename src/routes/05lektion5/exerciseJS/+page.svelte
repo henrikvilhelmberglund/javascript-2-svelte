@@ -44,13 +44,17 @@
 		// free checkbox
 		//  A factor describing the cost of the event with zero being free [0, 1]
 
+		// fix metoder i URLSearchParams
+		// params.get()
+		// params.append()
+
 		async function displayActivity() {
 			let res = await getRandomActivity();
 			let { activity, type, participants, price, link, key, accessibility } = JSON.parse(res);
 			main.innerHTML = "";
 			render();
 			let activityText = document.querySelector(".activity-text");
-			activityText.innerHTML = `${activity}`;
+			activityText.innerHTML = `${activity} <br>type:${type} participants:${participants} price:${price}`;
 			activityText.className = "activity-text";
 		}
 
@@ -61,7 +65,8 @@
 			// console.log(`checkBoxValue: ${checkBoxValue}`)
 			console.log(dropDownValue);
 			let params = new URLSearchParams({
-				participants: radioValue,
+				// participants: radioValue,
+				...(radioValue !== "any" ? { participants: radioValue } : {}),
 				...(dropDownValue !== "any" ? { type: dropDownValue } : {}),
 				...(checkBoxValue ? { price: 0 } : {}),
 			});
@@ -70,14 +75,16 @@
 				JSON.parse(res);
 			// console.log(`radioValue:${radioValue}`);
 			main.innerHTML = "";
-			render(radioValue);
+			render(radioValue, dropDownValue, checkBoxValue);
 			let activityText = document.querySelector(".activity-text");
-			activityText.innerHTML = `${error ? error : activity}`;
+			activityText.innerHTML = `${
+				error ? error : activity
+			} <br>type:${type} participants:${participants} price:${price}`;
 		}
 
 		function render(selectedValue, selectedType, selectedBool) {
 			if (!selectedValue) {
-				selectedValue = 1;
+				selectedValue = "any";
 			}
 			if (!selectedType) {
 				selectedValue = 1;
@@ -99,7 +106,12 @@
 			createDropdown(filterDiv, selectedType);
 			createCheckbox(filterDiv, selectedBool);
 			main.append(filterDiv);
-			let oldRadio = document.querySelectorAll(`input[type="radio"]`)[selectedValue - 1];
+      // fix later :)
+			let oldRadio =
+				document.querySelectorAll(`input[type="radio"]`)[
+					selectedValue === "any" ? 0 : selectedValue - 1
+				];
+			console.log(oldRadio);
 			oldRadio.checked = true;
 			let type = document.createElement("select");
 
@@ -122,8 +134,8 @@
 		function createRadio(element, defaultValue) {
 			// console.log(`defaultValue: ${defaultValue}`);
 
-			let radioValues = [1, 2, 3, 4];
-			radioValues.forEach((value, i) => {
+			let radioValues = ["any", 1, 2, 3, 4];
+			radioValues.forEach((value) => {
 				let label = document.createElement("label");
 				label.htmlFor = `radio_${value}`;
 				label.innerText = value;
