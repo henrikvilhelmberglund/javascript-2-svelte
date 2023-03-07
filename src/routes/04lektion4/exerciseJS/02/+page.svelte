@@ -31,16 +31,23 @@ Företag (Namn, typ av företag)
 			return json;
 		};
 
-		const showUsers = (array, number) => {
+    const fetchUser = async (id) => {
+			const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+			const json = await res.json();
+			// console.log(json);
+			return json;
+		};
+
+		const showUsers = (array) => {
       main = document.querySelector("main");
 			main.innerHTML = "";
       console.log(array);
 			let div = document.createElement("div");
 			div.className = "result";
-			array = number ? [...Array(array[number])] : array;
+			array = typeof array === "array" ? array : [array];
 			array.forEach((user) => {
 				let userDiv;
-				if (document.querySelector(".user") && number) {
+				if (document.querySelector(".user")) {
 					userDiv = document.querySelector(".user");
 					userDiv.innerHTML = "";
 				} else {
@@ -75,10 +82,11 @@ Företag (Namn, typ av företag)
 		};
 
 		const renderSingleUser = async (input) => {
-			let users = await fetchUsers(input);
+			let user = await fetchUser(input);
+      // user = Array.from(user);
 			// showTodos(todos);
 			// showTodosForUser(myData);
-			showUsers(users, input);
+			showUsers(user);
 		};
 
 		// setTimeout(() => {
