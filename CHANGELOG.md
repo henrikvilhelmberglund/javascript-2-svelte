@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.5](https://github.com/henrikvilhelmberglund/javascript-2-svelte/compare/v0.0.4...v0.0.5) (2023-03-10)
+
+
+### Features
+
+* :lipstick: add silly styling ([5e9ecaa](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/5e9ecaa84c1ba0ace484d331a4de3486ff68c839))
+* :sparkles: add stupid way of printing stuff in the DOM using Svelte ([38f9d50](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/38f9d5096d5d82986cfdf96ff49af1128e629a2d))
+* :sparkles: add 06lektion6 route ([2315b57](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/2315b57b777683648fbdb785a3d16babae596325))
+* :bug: add a few bugs ([09d6a66](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/09d6a66f862f1a1fc5a7c419920f3edbfc4cf6d4))
+* :sparkles: add dropdown, checkbox, error handling (kind of) ([4b0d54a](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/4b0d54a1d2f5476f97b0bce76e7538b71ca15290))
+* :sparkles: start exercise, add displayActivity(), filterActivity(), render(), createRadio() functions ([4cfc81f](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/4cfc81fca09356b646b63dbc327432113ce14dfd))
+* :sparkles: add 05lektion5 01 route ([a8bc748](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/a8bc748b84c6221fd93b9f4d95eb9a62b3e1cb08))
+* :sparkles: add hover colors to Nav ([868a353](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/868a353c23cb46346def2dba619dd25b87835708))
+* :sparkles: add lektion 05 ([c47a3de](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/c47a3de191ce76267768d5c8cadcc9d8ee0954a6))
+
+
+### Bug Fixes
+
+* :zap: add asset preloading to avoid slow loading of images ([fff85e3](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/fff85e3c83804815a47bedac3a7cabc25e6b69e9))
+* :zap: remove userDiv instead of e.target.parentElement.parentElement ([f7e34dc](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/f7e34dcf25cb259c1fd5b3edf43970a7ce46d164))
+* :bug: fix deletion with parentNode parentNode ([fdec1a8](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/fdec1a8fbf17347fba78cdfc63e3df9d6c810148))
+* :bug: fix more bugs ([fdb13bf](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/fdb13bf14be2ea1b42162753960451b498a4fae6))
+* :bug: fix bugs ([ab9638b](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/ab9638b1a4f1259c720d8618a0148706ef1bcebd))
+* :bug: fix bugs ([492333b](https://github.com/henrikvilhelmberglund/javascript-2-svelte/commit/492333bea03b88668b7d712aece56028df5e6d5a))
+
 ## [0.0.4](https://github.com/henrikvilhelmberglund/javascript-2-svelte/compare/v0.0.3...v0.0.4) (2023-03-06)
 
 
