@@ -8,9 +8,38 @@
   Pending, resolve, reject
 
 
+  let dough = async () => {
+    let hasDoughInTheFridge = false;
+    //Ett Promise har tre olika stadier - pending, resolved, rejected
+    return new Promise((resolve, reject) => {
+      if (hasDoughInTheFridge) {
+        resolve("Promise resolved!");
+      } else {
+        reject("Promise rejected :( ");
+      }
+    });
+  };
+
+  sedan try-catch när man awaitar
+
+  let makePizza = async () => {
+  try {
+    await dough();
+    console.log("Pizzan är färdig");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+  makePizza();
 
   */
 
+/*
+
+  throw new Error("custom error här")
+
+*/
 
 </script>
 
