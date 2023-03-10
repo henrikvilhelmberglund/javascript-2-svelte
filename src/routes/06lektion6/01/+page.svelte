@@ -35,12 +35,58 @@
 
   */
 
-/*
+	/*
 
   throw new Error("custom error här")
 
 */
 
+	/*
+
+  Finns även Promise.all() som inväntar en array av promises
+
+  // Multiple promises - Promise.all och Promise.allSettled()
+
+  let getUser = async (id) => {
+    try {
+      let response = await fetch(
+        `https://jsonplaceholkder.typicode.com/users/${id}`
+      );
+      let data = await response.json();
+      return data;
+    } catch (err) {
+      console.log("error", err);
+    }
+  };
+
+  let userIds = [3, 6, 10];
+
+  let getAllUsers = async () => {
+    try {
+      console.log("körs");
+
+      let promises = userIds.map((id) => getUser(id));
+
+      //Kastar error om ett promise blir rejected
+      let results = await Promise.all(promises);
+
+      //Returnerar rejectade och resolvade promises
+      let results2 = await Promise.allSettled(promises);
+      console.log(results2);
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+*/
+
+	/*
+
+  .map() returnerar en ny array med det som returneras från funktionen istället för
+  .forEach() som inte returnerar något
+  let promises = userIds.map((id) => getUser(id));
+
+*/
 </script>
 
 <main class="p-4">
