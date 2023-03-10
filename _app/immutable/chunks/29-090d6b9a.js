@@ -1,1 +1,0 @@
-import{default as t}from"../components/pages/04lektion4/exerciseJS/_page.svelte-0685d5b5.js";export{t as component};
