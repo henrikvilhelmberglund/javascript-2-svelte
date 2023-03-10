@@ -181,6 +181,36 @@
 		activePet.startStateInterval();
 		// activePet.startStatUpdateInterval();
 	}
+
+	let allImages = [
+		"images/duck/duck_eat.gif",
+		"images/duck/duck_happy.gif",
+		"images/duck/duck_hungry.gif",
+		"images/duck/duck_idle.gif",
+		"images/duck/duck_lonely.gif",
+		"images/duck/duck_nap.gif",
+		"images/duck/duck_play.gif",
+		"images/duck/duck_tired.gif",
+		"images/fish/fish_eat.gif",
+		"images/fish/fish_happy.gif",
+		"images/fish/fish_hungry.gif",
+		"images/fish/fish_idle.gif",
+		"images/fish/fish_lonely.gif",
+		"images/fish/fish_nap.gif",
+		"images/fish/fish_play.gif",
+		"images/fish/fish_tired.gif",
+		"images/frog/frog_eat.gif",
+		"images/frog/frog_happy.gif",
+		"images/frog/frog_hungry.gif",
+		"images/frog/frog_idle.gif",
+		"images/frog/frog_lonely.gif",
+		"images/frog/frog_nap.gif",
+		"images/frog/frog_play.gif",
+		"images/frog/frog_tired.gif",
+		"images/tamagocchi/tamagocchi_duck.png",
+		"images/tamagocchi/tamagocchi_fish.png",
+		"images/tamagocchi/tamagocchi_frog.png",
+	];
 </script>
 
 <!-- 
@@ -200,6 +230,9 @@
 
 <svelte:head>
 	<title>Tamagocchi</title>
+	{#each allImages as image}
+		<link rel="preload" as="image" href="{base}/{image}" />
+	{/each}
 </svelte:head>
 
 <main class="flex flex-col items-center  justify-center p-4 [&>*]:p-2">
