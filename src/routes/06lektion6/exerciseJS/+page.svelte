@@ -8,6 +8,8 @@ letsDance('waltz')
 Använd setTimeout för att fördröja funktionerna. Testa med fördel både .then() och async/await.
 */
 
+	import { fly } from "svelte/transition";
+
 	const letsDance = async (danceStyle) => {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
@@ -203,27 +205,27 @@ Använd setTimeout för att fördröja funktionerna. Testa med fördel både .th
 		try {
 			let result;
 			result = await research();
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 			console.log(result);
 			result = await wireframe();
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 			console.log(result);
 			result = await figma();
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 			console.log(result);
 			result = await code();
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 			console.log(result);
 			result = await stackoverflow();
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 			console.log(result);
 			result = await test();
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 			console.log(result);
 			result = await celebrate();
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 			console.log(result);
-      thingsToDo = thingsToDo;
+			thingsToDo = thingsToDo;
 		} catch (error) {
 			console.log(`Something went wrong! ${error}`);
 		}
@@ -268,13 +270,15 @@ Använd setTimeout för att fördröja funktionerna. Testa med fördel både .th
 	// makeWebProject3();
 </script>
 
-{#key thingsToDo}
-	{#each thingsToDo as thing}
-		<p>
+<div class="flex flex-col items-center [&>*]:text-lg">
+  {#each thingsToDo as thing}
+	{#key thing}
+		<p transition:fly={{ y: 50 }}>
 			{thing}
 		</p>
-	{/each}
-{/key}
-
+    {/key}
+    {/each}
+  </div>
+    
 <style>
 </style>
