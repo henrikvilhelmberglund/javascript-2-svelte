@@ -35,6 +35,7 @@
 	"type": "module",
 	"dependencies": {
 		"@julr/unocss-preset-forms": "^0.0.3",
-		"@unocss/reset": "^0.49.4"
+		"@unocss/reset": "^0.49.4",
+		"underscore": "^1.13.6"
 	}
 }
