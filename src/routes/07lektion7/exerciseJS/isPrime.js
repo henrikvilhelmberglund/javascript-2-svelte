@@ -8,7 +8,7 @@ var cart=[
 ]
 */
 export function isPrime(item) {
-	return item["type"] === "prime";
+	return item.type === "prime";
 }
 
 export function primeItems(cart) {
