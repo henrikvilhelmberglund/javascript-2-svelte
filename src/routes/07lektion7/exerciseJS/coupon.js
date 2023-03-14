@@ -7,6 +7,5 @@ export function couponPrice(item) {
 }
 
 export function applyCoupon(cart) {
-	const appliedPrice = cart.map((item) => couponPrice(item));
-	return appliedPrice;
+	return cart.map((item) => couponPrice(item));
 }

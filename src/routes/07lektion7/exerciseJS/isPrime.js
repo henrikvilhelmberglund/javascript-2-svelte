@@ -12,6 +12,5 @@ export function isPrime(item) {
 }
 
 export function primeItems(cart) {
-	const allPrimeItems = cart.filter(isPrime);
-	return allPrimeItems;
+	return cart.filter(isPrime);
 }
