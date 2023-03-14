@@ -270,7 +270,7 @@ Använd setTimeout för att fördröja funktionerna. Testa med fördel både .th
 	// makeWebProject3();
 </script>
 
-<div class="flex flex-col items-center [&>*]:text-lg">
+<div class="flex flex-col items-start [&>*]:text-lg">
   {#each thingsToDo as thing}
 	{#key thing}
 		<p transition:fly={{ y: 50 }}>
