@@ -47,10 +47,10 @@
 		// 	list2.append(li);
 		// });
 
-		createList(data1, list1, "li");
-		createList(data2, list2, "li");
-		createList(data3, list3, "li");
-		createList(data4, list4, "p");
+		createList(data1, list1, "li", createElementWithText);
+		createList(data2, list2, "li", createElementWithText);
+		createList(data3, list3, "li", createElementWithText);
+		createList(data4, list4, "p", createElementWithText);
 	});
 
 	function createListItem(item) {
@@ -65,14 +65,23 @@
 		return elem;
 	}
 
-	// exempel på higher order function
-	function createList(array, element, type) {
+	// Exempel på higher order function - tar emot en annan funktion som parameter
+	function createList(array, element, type, fn) {
 		array.forEach((item) => {
-			element.append(createElementWithText(type, item));
+			element.append(fn(type, item));
 		});
 	}
 
-	// Recursion
+	// Recursion - en funktion som anropar sig själv
+
+	function countDown(num) {
+		console.log(num);
+		const newNum = num - 1;
+		if (newNum > 0) {
+			countDown(newNum);
+		}
+		// return newNum;
+	}
 </script>
 
 <main class="p-4">
@@ -98,6 +107,8 @@
 	<ul id="list3" />
 	<h2>List 4</h2>
 	<div id="list4" />
+
+	<p>{countDown(5)}</p>
 </main>
 
 <style>
