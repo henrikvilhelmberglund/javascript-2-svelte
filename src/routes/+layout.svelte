@@ -2,7 +2,15 @@
 	import "@unocss/reset/antfu.css";
 	import Nav from "$lib/Nav.svelte";
 	import { base } from "$app/paths";
-	let routes = ["/01lektion1", "/02lektion2", "/03lektion3", "/04lektion4", "/05lektion5", "/06lektion6"];
+	let routes = [
+		"/01lektion1",
+		"/02lektion2",
+		"/03lektion3",
+		"/04lektion4",
+		"/05lektion5",
+		"/06lektion6",
+		"/07lektion7",
+	];
 	let prefix = "";
 </script>
 
